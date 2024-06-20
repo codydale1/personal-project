@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 
 class ApplicantController extends Controller
@@ -9,9 +10,9 @@ class ApplicantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Applicant $applicants)
     {
-        return view("applicants.index");
+        return view('applicants.index', ['applicants' => $applicants->paginate()]);
     }
 
     /**

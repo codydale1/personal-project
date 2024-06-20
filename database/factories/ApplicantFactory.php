@@ -21,7 +21,8 @@ class ApplicantFactory extends Factory
 
         $birthday = Carbon::now()->subYears(random_int(21, 50))->subDays(random_int(0, 364));
         return [
-            'name' => $this->faker->name,
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
             'salary' => $this->faker->numberBetween(20000, 80000),
             'address' => $this->faker->address,
             'birthday' => $birthday->format('Y-m-d'), 
