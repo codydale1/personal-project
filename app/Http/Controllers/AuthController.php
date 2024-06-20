@@ -23,7 +23,7 @@ class AuthController extends Controller
         $remember = $request->filled('remember');
 
         if (Auth::attempt($credentials, $remember)) {
-            return redirect()->intended('/');
+            return redirect()->intended('/applicants');
         } else {
             return redirect()->back()
                 ->with('error', 'Invalid credentials');

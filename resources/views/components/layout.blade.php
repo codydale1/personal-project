@@ -4,17 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <title>Laravel</title>
+        <title>User Management System</title>
         
     </head>
     <body
-    class="from-10% via-30% to-90% mx-auto mt-10 max-w-2xl bg-gradient-to-r from-indigo-100 via-sky-100 to-emerald-100 text-slate-700">
+    class="mx-auto mt-10 max-w-2xl text-slate-700">
     <nav class="mb-8 flex justify-between text-lg font-medium">
+      @auth
     <ul class="flex space-x-2">
       <li>
-        <a href="{{ route('jobs.index') }}">Home</a>
+        <a href="{{ route('applicants.index') }}">Home</a>
       </li>
     </ul>
+    @endauth
 
     <ul class="flex space-x-2">
       @auth
@@ -27,10 +29,6 @@
             @method('DELETE')
             <button>Logout</button>
           </form>
-        </li>
-      @else
-        <li>
-          <a href="{{ route('auth.create') }}">Sign in</a>
         </li>
       @endauth
     </ul>

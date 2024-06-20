@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,15 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function employer(): HasOne
+    public function applicant(): HasMany
     {
-        return $this->hasOne(User::class);
+        return $this->hasMany(User::class);
     }
 
-    public function jobApplications(): HasMany
-    {
-        return $this->hasMany(JobApplication::class);
-    }
    
     protected $hidden = [
         'password',
