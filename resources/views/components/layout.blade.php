@@ -9,7 +9,7 @@
         
     </head>
     <body
-    class="mx-auto mt-10 max-w-2xl text-slate-700 bg-gray-200">
+    class="mx-auto mt-10 max-w-[1000px] text-slate-700 bg-gray-200">
     <nav class="mb-8 flex justify-between text-lg font-medium">
       @auth
     <ul class="flex space-x-2">

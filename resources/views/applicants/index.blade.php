@@ -1,6 +1,5 @@
 <x-layout>
 <div class="flex flex-col items-center justify-center">
-
 <x-card class="mb-4 text-sm" x-data="">
     <form x-ref="filters" id="filtering-form" action="{{route('applicants.index')}}" method="GET">
         <div class="mb-4 grid grid-cols-2 gap-4">
@@ -32,57 +31,73 @@
             </div>
           </div>
         </div>
-        <div class="my-4 p-3 grid grid-cols-3 gap-4">
-            <div>
-                <div class="mb-1 font-semibold">Experience</div>
-                    <x-radio-group name="experience" 
-                    :options="array_combine(
+        <div class="my-4 p-3 grid grid-cols-4 gap-4">
+          <div>
+              <x-radio-group name="main_filter" 
+                :options="['Added By You']"/>
+          </div>
+          <div>
+            <div class="mb-1 font-semibold">Experience</div>
+              <x-radio-group name="experience" 
+                :options="array_combine(
                 array_map('ucfirst', \App\Models\Applicant::$experience),
                 \App\Models\Applicant::$experience)"/>
-                </div>
-            <div>
-                <div class="mb-1 font-semibold">Category</div>
-                    <x-radio-group name="category" :options="\App\Models\Applicant::$category"/>
+              </div>
+          <div>
+            <div class="mb-1 font-semibold">Category</div>
+              <x-radio-group name="category" :options="\App\Models\Applicant::$category"/>
             </div>
             <div>
-                <div class="mb-1 font-semibold">Status</div>
-                    <x-radio-group name="status" :options="\App\Models\Applicant::$status"/>
+              <div class="mb-1 font-semibold">Status</div>
+                <x-radio-group name="status" :options="\App\Models\Applicant::$status"/>
             </div>
           </div>
-        <x-button class="w-full">
+          <div class="flex items-center gap-2">
+          <x-button class="w-full">
             Filter
         </x-button>
+        <x-button class="w-full">
+            Clear
+        </x-button>
+          </div>
     </form>
     </x-card>
  <x-card>
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+        <table class="max-w-3xl divide-y divide-gray-500 dark:divide-neutral-700">
           <thead>
-            <tr>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">First Name</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Last Name</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Age</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Expected Salary</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Address</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Job Type(Category)</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Experience</th>
-              <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-black-500 uppercase">Status</th>
-              <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-black-500 uppercase">Action</th>
+            <tr class="divide-x divide-gray-200 bg-gray-200">
+              <th class="header-text">First Name</th>
+              <th class="header-text">First Name</th>
+              <th class="header-text">Last Name</th>
+              <th class="header-text">Age</th>
+              <th class="header-text">Expected Salary</th>
+              <th class="header-text">Address</th>
+              <th class="header-text">Job Type(Category)</th>
+              <th class="header-text">Experience</th>
+              <th class="header-text">Status</th>
+              <th class="header-text text-end">Action</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
             @foreach ($applicants as $applicant)
             <tr class="hover:bg-gray-100  dark:hover:bg-gray-800 hover:text-white">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{{$applicant->first_name}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm">{{$applicant->last_name}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm ">
+            <td class="py-3 pl-4">
+                <div class="flex items-center h-5">
+                  <input id="hs-table-checkbox-2" type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-neutral-100 dark:border-neutral-700">
+                  <label for="hs-table-checkbox-2" class="sr-only">Checkbox</label>
+                </div>
+              </td>
+              <td class="data-text">{{$applicant->first_name}}</td>
+              <td class="data-text">{{$applicant->last_name}}</td>
+              <td class="data-text">
               {{ floor(\Carbon\Carbon::parse($applicant->birthday)->diffInYears(\Carbon\Carbon::now())) }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm ">Php {{number_format($applicant->salary)}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm ">{{$applicant->address}}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm ">{{ $applicant->getCategoryKey() }}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm ">{{ $applicant->getExperienceKey() }}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm ">{{ $applicant->getStatusKey() }}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+              <td class="data-text">Php {{number_format($applicant->salary)}}</td>
+              <td class="data-text">{{$applicant->address}}</td>
+              <td class="data-text">{{ $applicant->getCategoryKey() }}</td>
+              <td class="data-text">{{ $applicant->getExperienceKey() }}</td>
+              <td class="data-text">{{ $applicant->getStatusKey() }}</td>
+              <td class="data-text">
               <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400">Edit</button>
               <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400">Delete</button>
               </td>

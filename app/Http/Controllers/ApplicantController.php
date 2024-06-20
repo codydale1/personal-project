@@ -12,7 +12,7 @@ class ApplicantController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category', 'status');
+        $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category', 'status','yourApplicants');
         
         // return view(
         //     'job.index', ['jobs' => Job::with('employer')->filter($filters)->get()]
