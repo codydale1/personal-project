@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Dale Nacaario',
             'email' => 'dalenacario@gmail.com',
         ]);
-        User::factory(300)->create();
+        User::factory(200)->create();
 
         $users = User::all()->shuffle();
-        for ($i = 0; $i < 20; $i++){
+        for ($i = 0; $i < 100; $i++){
             Applicant::factory()->create([
                 'user_id' =>$users->pop()->id
 

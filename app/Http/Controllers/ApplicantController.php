@@ -10,9 +10,14 @@ class ApplicantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Applicant $applicants)
+    public function index(Request $request)
     {
-        return view('applicants.index', ['applicants' => $applicants->paginate()]);
+        $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category', 'status');
+        
+        // return view(
+        //     'job.index', ['jobs' => Job::with('employer')->filter($filters)->get()]
+        // );
+        return view('applicants.index', ['applicants' => Applicant::filter($filters)->paginate(10)]);
     }
 
     /**

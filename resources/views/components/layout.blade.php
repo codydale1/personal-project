@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>User Management System</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         
     </head>
     <body
-    class="mx-auto mt-10 max-w-2xl text-slate-700">
+    class="mx-auto mt-10 max-w-2xl text-slate-700 bg-gray-200">
     <nav class="mb-8 flex justify-between text-lg font-medium">
       @auth
     <ul class="flex space-x-2">
@@ -18,7 +19,7 @@
     </ul>
     @endauth
 
-    <ul class="flex space-x-2">
+    <ul class="flex gap-5">
       @auth
         <li>
           {{ auth()->user()->name ?? 'Anynomus' }}
@@ -43,6 +44,5 @@
   </div>
   @endif
         {{$slot}}
-
     </body>
 </html>
