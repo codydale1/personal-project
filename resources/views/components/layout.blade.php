@@ -6,7 +6,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <title>User Management System</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        
+        @livewireStyles
     </head>
     <body
     class="mx-auto mt-10 max-w-[1000px] text-slate-700 bg-gray-200">
@@ -43,6 +43,7 @@
       </p>
   </div>
   @endif
+    @livewireScripts
         {{$slot}}
     </body>
 </html>

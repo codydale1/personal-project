@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 
 class Applicant extends Model
 {
@@ -17,6 +18,8 @@ class Applicant extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static array $mainFilters = ['Added By You' => 'added_by_you'];
     public static array $status = ['Hired' => 'hired', 
                                    'Processing' => 'processing', 
                                    'Failed' => 'failed'];
@@ -47,8 +50,11 @@ class Applicant extends Model
                 $query->where('first_name', 'like', '%' .$search . '%')
                     ->orWhere('last_name', 'like', '%' . $search . '%');
             });
-        })->when($filters['status'] ?? null, function ($query, $status) {
-            $query->where('status', '<=', request('status'));
+        })->when($filters['main_filter'] ?? null, function ($query, $mainFilter) {
+            if ($mainFilter == 'added_by_you') {
+                $query->where('user_id', Auth::id());
+            }
+        
         })->when($filters['min_salary'] ?? null, function ($query, $minSalary) {
             $query->where('salary', '>=', $minSalary);
         })->when($filters['max_salary'] ?? null, function ($query, $maxSalary) {
