@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use Livewire\WithPagination;
 
 class ApplicantController extends Controller
 {
+    use WithPagination;
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category', 'status','main_filter');
-        
-        // return view(
-        //     'job.index', ['jobs' => Job::with('employer')->filter($filters)->get()]
-        // );
         return view('applicants.index', ['applicants' => Applicant::filter($filters)->paginate(10)]);
     }
 

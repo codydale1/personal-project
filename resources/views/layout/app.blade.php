@@ -9,17 +9,17 @@
         @livewireStyles
     </head>
     <body
-    class="mx-auto mt-10 max-w-[1000px] text-slate-700 bg-gray-200">
-    <nav class="mb-8 flex justify-between text-lg font-medium">
+    class="mx-auto mt-10 text-slate-700 bg-gray-200">
+    <nav class="mb-8 flex items-center gap-6 justify-start text-lg font-medium">
       @auth
-    <ul class="flex space-x-2">
+    <ul class="pl-4 flex space-x-2">
       <li>
-        <a href="{{ route('applicants.index') }}">Home</a>
+        <a href="{{ route('applicants') }}">Home</a>
       </li>
     </ul>
     @endauth
 
-    <ul class="flex gap-5">
+    <ul class="flex gap-5 absolute right-0 pr-4">
       @auth
         <li>
           {{ auth()->user()->name ?? 'Anynomus' }}
@@ -34,15 +34,7 @@
       @endauth
     </ul>
   </nav>
-  @if(session('success'))
-  <div 
-    role="alert"
-    class="my-8 rounded-md border border-l-4 border-green-300 bg-green-100 p-4 text-green-700 opacity-75">
-      <p class="font-bold"> Success!
-        {{session('success')}}
-      </p>
-  </div>
-  @endif
+
     @livewireScripts
         {{$slot}}
     </body>

@@ -17,7 +17,7 @@ class GuestMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            return redirect()->route('applicants.index');
+            return redirect()->route('applicants');
         }
 
         return $next($request);
