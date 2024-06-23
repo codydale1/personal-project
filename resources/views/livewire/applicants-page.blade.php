@@ -78,7 +78,7 @@
       </div>
     </div>
   </div>
-  <x-card class="m-1">
+  <div class="m-1">
     <div class="overflow-x-auto w-full">
       <table class="divide-y divide-gray-500">
         <thead>
@@ -106,7 +106,7 @@
           </tbody>
       </table>
     </div>
-  </x-card>
+</div>
   <div class="py-4 px-3">
     <div class="flex ">
       @livewire('applicants-per-page')

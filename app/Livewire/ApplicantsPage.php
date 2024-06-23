@@ -16,7 +16,6 @@ class ApplicantsPage extends Component
     #[Url()]
     public $perPage = 5;
 
-    #[Url(history:true)]
     public $search = '';
 
     #[Url(history:true)]
@@ -34,28 +33,25 @@ class ApplicantsPage extends Component
     #[Url(history:true)]
     public $max_salary = '';
 
+    // protected $listeners = [
+    //     'perPageUpdated' => 'updatePerPage',
+    //     'searchUpdated' => 'updateSearch',
+    //     'statusUpdated' => 'updateStatus',
+    //     'applicantDeleted' => 'removeApplicant',
+    // ];
+
+  
+
 
     public function render()
     {
         return view('livewire.applicants-page', 
         ['applicants' => Applicant::search($this->search)
-        ->when($this->status !== '', function($query){
-            $query->where('status', $this->status);
-        })
-        ->when($this->category !== '', function($query) {
-            $query->where('category', $this->category);
-        })
-        ->when($this->experience !== '', function($query) {
-            $query->where('experience', $this->experience);
-        })
-        ->when($this->min_salary !== '', function($query) {
-            $query->where('salary', '>=' ,$this->min_salary);
-        })
-        ->when($this->max_salary !== '', function($query) {
-            $query->where('salary', '<=', $this->max_salary);
-        })
-        ->paginate($this->perPage)]);
+            ->paginate($this->perPage)]);
     }
   
 
+    public function delete(Applicant $applicant){
+        $applicant->delete();
+    }
 }
