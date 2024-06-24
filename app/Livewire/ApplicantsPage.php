@@ -13,32 +13,20 @@ class ApplicantsPage extends Component
 {
     use WithPagination;
 
-    #[Url()]
     public $perPage = 5;
-
     public $search = '';
-
-    #[Url(history:true)]
     public $status = '';
-
-    #[Url(history:true)]
     public $category = '';
-
-    #[Url(history:true)]
     public $experience = '';
-
-    #[Url(history:true)]
     public $min_salary = '';
-
-    #[Url(history:true)]
     public $max_salary = '';
 
-    // protected $listeners = [
-    //     'perPageUpdated' => 'updatePerPage',
-    //     'searchUpdated' => 'updateSearch',
-    //     'statusUpdated' => 'updateStatus',
-    //     'applicantDeleted' => 'removeApplicant',
-    // ];
+    protected $listeners = [
+        'perPageUpdated' => 'updatePerPage',
+        'searchUpdated' => 'updateSearch',
+        'statusUpdated' => 'updateStatus',
+        'applicantDeleted' => 'removeApplicant',
+    ];
 
   
 
@@ -47,7 +35,22 @@ class ApplicantsPage extends Component
     {
         return view('livewire.applicants-page', 
         ['applicants' => Applicant::search($this->search)
-            ->paginate($this->perPage)]);
+        ->when($this->status !== '', function($query){
+            $query->where('status', $this->status);
+        })
+        ->when($this->category !== '', function($query) {
+            $query->where('category', $this->category);
+        })
+        ->when($this->experience !== '', function($query) {
+            $query->where('experience', $this->experience);
+        })
+        ->when($this->min_salary !== '', function($query) {
+            $query->where('salary', '>=' ,$this->min_salary);
+        })
+        ->when($this->max_salary !== '', function($query) {
+            $query->where('salary', '<=', $this->max_salary);
+        })
+        ->paginate($this->perPage)]);
     }
   
 

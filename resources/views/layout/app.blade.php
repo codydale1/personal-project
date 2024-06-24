@@ -3,10 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css'])
         <title>User Management System</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        @livewireStyles
     </head>
     <body
     class="mx-auto mt-10 text-slate-700 bg-gray-200">
@@ -34,8 +32,6 @@
       @endauth
     </ul>
   </nav>
-
-    @livewireScripts
         {{$slot}}
     </body>
 </html>
