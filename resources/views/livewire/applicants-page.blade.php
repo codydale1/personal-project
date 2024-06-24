@@ -6,7 +6,7 @@
         <button x-data @click="$dispatch('open-modal', { title: 'Add' })" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 focus:outline-none">Add</button>
         <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 focus:outline-none">Delete</button>
         </div>
-        <div class="flex items-center justify-between p-4">
+        <div class="flex items-center justify-between pb-4 px-4">
           <div class="flex gap-4">
             <div class="relative max-w-full">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
