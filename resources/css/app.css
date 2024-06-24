@@ -10,4 +10,8 @@
 .data-text {
     @apply px-6 py-4 whitespace-nowrap text-sm font-medium;
 }
+
+.row-button {
+    @apply inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent;
+}
 }

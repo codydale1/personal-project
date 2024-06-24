@@ -12,24 +12,32 @@ use Livewire\Attributes\Layout;
 class ApplicantsPage extends Component
 {
     use WithPagination;
-
+    
+    #[Url(history:true)]
     public $perPage = 5;
+
+    #[Url(history:true)]
+
     public $search = '';
+
+    #[Url(history:true)]
+
     public $status = '';
+
+    #[Url(history:true)]
+
     public $category = '';
+
+    #[Url(history:true)]
+
     public $experience = '';
+    
+    #[Url(history:true)]
+
     public $min_salary = '';
+    #[Url(history:true)]
+
     public $max_salary = '';
-
-    protected $listeners = [
-        'perPageUpdated' => 'updatePerPage',
-        'searchUpdated' => 'updateSearch',
-        'statusUpdated' => 'updateStatus',
-        'applicantDeleted' => 'removeApplicant',
-    ];
-
-  
-
 
     public function render()
     {
