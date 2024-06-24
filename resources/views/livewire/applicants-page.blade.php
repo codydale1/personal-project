@@ -160,8 +160,12 @@
   @endif
   </div>
 </div>
-<x-drawer title="Add"/>
-<x-drawer title="Edit"/>
+<x-drawer>
+  <x-slot:body>
+    <livewire:applicant-form/>
+  </x-slot>
+</x-drawer>
+
 
 </section>
  
