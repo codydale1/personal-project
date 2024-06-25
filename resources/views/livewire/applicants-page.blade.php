@@ -6,7 +6,7 @@
             @if(session('success'))
               <div 
                 role="alert"
-                class="my-8 rounded-md border border-l-4 border-green-300 bg-green-100 p-4 text-green-700 opacity-75">
+                class="success-message">
               <p class="font-bold"> Success!
                 {{session('success')}}
               </p>
@@ -14,8 +14,8 @@
             @endif
           </div>
           <div>
-          <a href="{{ route('applicants.add') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 focus:outline-none">Add</a>        
-        <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 focus:outline-none">Delete</button>
+            <a href="{{ route('applicants.add') }}" class="primary-button bg-blue-700 hover:bg-blue-800">Add</a>        
+            <button type="button" class="primary-button bg-red-700 hover:bg-red-800">Delete</button>
           </div>
         </div>
         <div class="flex items-center justify-between pb-4 px-4">
