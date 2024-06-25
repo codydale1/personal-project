@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 
 use App\Livewire\ApplicantsPage;
+use App\Livewire\EditApplicantsPage;
+use App\Livewire\AddApplicantsPage;
 use App\Livewire\AuthPage;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +19,11 @@ Route::post('/auth/store', [AuthController::class, 'store'])
 });
 
 Route::middleware('user')->group(function () {
-    // Route::resource('applicants', ApplicantController::class)
-    // ->only(['index', 'show']);
+
 Route::get('/applicants', ApplicantsPage::class)->name('applicants');
+Route::get('/applicants/add', AddApplicantsPage::class)->name('applicants.add');
+Route::get('/applicants/edit/{id}', EditApplicantsPage::class)->name('applicants.edit');
+
 Route::get('', fn()=>to_route('applicants'));
 Route::delete('logout', fn() => to_route('auth.destroy'))->name('logout');
 Route::delete('auth', [AuthController::class, 'destroy'])
