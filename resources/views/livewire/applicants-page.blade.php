@@ -126,6 +126,7 @@
                 <button 
                   type="button" 
                   x-data 
+                  wire:click="editApplicant({{ $applicant}})"
                   @click="$dispatch('open-modal', { title: 'Edit' })" 
                   class="row-button text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400">
                   Edit
@@ -162,7 +163,7 @@
 </div>
 <x-drawer>
   <x-slot:body>
-    <livewire:applicant-form/>
+  <livewire:applicant-form :applicantData="$applicantData" />
   </x-slot>
 </x-drawer>
 

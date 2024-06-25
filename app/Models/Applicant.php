@@ -14,14 +14,26 @@ class Applicant extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'salary',
+        'address',
+        'birthday',
+        'user_id',
+        'category',
+        'experience',
+        'status',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     public static array $mainFilters = ['Added By You' => 'added_by_you'];
-    public static array $status = ['Hired' => 'hired', 
-                                   'Processing' => 'processing', 
+    public static array $status = ['Processing' => 'processing',
+                                    'Hired' => 'hired', 
                                    'Failed' => 'failed'];
     public static array $category = ['Software Engineer' =>'software_engineer', 
                                      'Quality Assurance' => 'quality_assurance', 

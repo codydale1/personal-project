@@ -12,6 +12,8 @@ use Livewire\Attributes\Layout;
 class ApplicantsPage extends Component
 {
     use WithPagination;
+
+    public $applicantData;
     
     #[Url(history:true)]
     public $perPage = 5;
@@ -38,6 +40,11 @@ class ApplicantsPage extends Component
     #[Url(history:true)]
 
     public $max_salary = '';
+
+    public function editApplicant($applicant)
+    {
+        $this->applicantData = $applicant;
+    }
 
     public function render()
     {
